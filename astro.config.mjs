@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import vercel from '@astrojs/vercel/serverless'; // Add this import
+import vercel from '@astrojs/vercel'; // Changed from '@astrojs/vercel/serverless'
 
 export default defineConfig({
   integrations: [mdx()],
   output: 'server',
-  adapter: vercel() // Add this line
+  adapter: vercel()
 });
