@@ -1,0 +1,23 @@
+
+---
+import { Astro } from 'astro';
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+
+const slug = Astro.params.slug;
+const filePath = new URL(`../../../content/posts/${slug}.md`, import.meta.url);
+const raw = fs.readFileSync(filePath, 'utf-8');
+const { content, data } = matter(raw);
+---
+
+<html>
+  <head>
+    <title>{data.title}</title>
+  </head>
+  <body style="font-family: sans-serif; background: white; color: black; padding: 1rem;">
+    <h1 style="color: red;">{data.title}</h1>
+    <p><strong>By:</strong> {data.author} | <strong>Date:</strong> {data.pubDate}</p>
+    <article innerHTML={content}></article>
+  </body>
+</html>
